@@ -61,7 +61,7 @@ public class ReverseNode {
             Node curPointer = prePointer;      // 后指针
             prePointer = prePointer.next;        // 前指针“过河”：移动到下一个节点
             curPointer.next = newHead;   // 后指针“拆桥”+ 头插法（将当前处理节点的next域指向新链表的第一个节点）
-            newHead = curPointer;        // 头插法（新链表的第一个节点向前移动，也就是刚插入的新节点）
+            newHead = curPointer;        // 头插法（新链表的头指针前移，即指向刚插入的节点）
         }
         return newHead;
     }
