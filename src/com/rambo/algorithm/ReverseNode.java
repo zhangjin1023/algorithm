@@ -25,11 +25,14 @@ public class ReverseNode {
         node4.setNext(node5);
 
         node1.printNode();
-        Node reverseNode = reverseNode(node1);
-        reverseNode.printNode();
+//        Node reverseNode = reverseNode(node1);
+//        reverseNode.printNode();
 //
 //        Node reverseByStack = reverseByStack(node1);
-//        printNode(reverseByStack);
+//        reverseByStack.printNode();
+
+        Node newHead = reverseNodeRec(node1);
+        newHead.printNode();
     }
 
     /**
@@ -56,6 +59,11 @@ public class ReverseNode {
         return newHead;
     }
 
+    /**
+     * @description 用栈实现单链表反转
+     * @param head
+     * @return com.rambo.algorithm.Node
+     */
     public static Node reverseByStack(Node head) {
         // 1.如果链表为空或只有一个节点，无需反转，直接返回原链表表头
         if (head == null || head.next == null) {
@@ -76,6 +84,23 @@ public class ReverseNode {
         }
         // 5.此时head指针移动到新链表的末尾，需要设置next指针为null
         head.setNext(null);
+        return newHead;
+    }
+
+    /**
+     * @description 递归实现单链表反转(递归的思想 ： 把问题降级)
+     * 递归的精髓在于你就默认reverseNodeRec已经成功帮你解决了子问题了！但别去想如何解决的
+     * 现在只要处理当前node和子问题之间的关系。最后就能圆满解决整个问题。
+     * @param head
+     * @return com.rambo.algorithm.ReverseNode.Node
+     */
+    public static Node reverseNodeRec(Node head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        Node newHead = reverseNodeRec(head.next);
+        head.next.next = head;
+        head.next = null;
         return newHead;
     }
 }
