@@ -24,22 +24,12 @@ public class ReverseNode {
         node3.setNext(node4);
         node4.setNext(node5);
 
-        printNode(node1);
+        node1.printNode();
         Node reverseNode = reverseNode(node1);
-        printNode(reverseNode);
+        reverseNode.printNode();
 //
 //        Node reverseByStack = reverseByStack(node1);
 //        printNode(reverseByStack);
-    }
-
-    private static void printNode(Node node1) {
-        Node node = node1;
-        StringBuilder sb = new StringBuilder().append(node.val);
-        while (node.getNext() != null) {
-            node = node.getNext();
-            sb.append("->").append(node.val);
-        }
-        System.out.println(sb.toString());
     }
 
     /**
@@ -55,7 +45,7 @@ public class ReverseNode {
         if (head == null || head.next == null)
             return head;
 
-        Node newHead = null;// 新链表的第一个节点的指针
+        Node newHead = null;// 新链表的头指针
         Node prePointer = head;// 前指针
         while (prePointer != null) {
             Node curPointer = prePointer;      // 后指针
@@ -112,5 +102,15 @@ class Node {
 
     public void setNext(Node next) {
         this.next = next;
+    }
+
+    public void printNode() {
+        Node node = this;
+        StringBuilder sb = new StringBuilder().append(node.val);
+        while (node.getNext() != null) {
+            node = node.getNext();
+            sb.append("->").append(node.val);
+        }
+        System.out.println(sb.toString());
     }
 }
