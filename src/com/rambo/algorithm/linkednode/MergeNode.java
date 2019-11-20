@@ -1,11 +1,11 @@
-package com.rambo.algorithm;
+package com.rambo.algorithm.linkednode;
 
 /**
  * @description:有序链表合并：将两个有序链表合并,合并后仍然有序
  * @Date : 2019/11/20 9:55
  * @Author : zhang_jin
  */
-public class mergeNode {
+public class MergeNode {
 
     public static void main(String[] args){
         Node a1 = new Node(1);

@@ -1,4 +1,4 @@
-package com.rambo.algorithm;
+package com.rambo.algorithm.sort;
 
 import java.util.Arrays;
 

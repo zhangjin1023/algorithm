@@ -1,4 +1,4 @@
-package com.rambo.algorithm;
+package com.rambo.algorithm.search;
 
 /**
  * @description:二分查找：非递归实现

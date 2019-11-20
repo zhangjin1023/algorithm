@@ -1,4 +1,4 @@
-package com.rambo.algorithm;
+package com.rambo.algorithm.tree;
 
 /**
  * @description:二叉树结构体

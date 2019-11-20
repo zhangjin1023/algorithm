@@ -1,4 +1,4 @@
-package com.rambo.algorithm;
+package com.rambo.algorithm.tree;
 
 import java.util.LinkedList;
 import java.util.Stack;

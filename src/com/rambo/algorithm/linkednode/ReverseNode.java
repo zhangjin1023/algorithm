@@ -1,4 +1,4 @@
-package com.rambo.algorithm;
+package com.rambo.algorithm.linkednode;
 
 import java.util.Stack;
 
@@ -41,7 +41,7 @@ public class ReverseNode {
      * 2.过河拆桥：形象化的描述当指针移动到下一个节点后，当前节点的next域指向就可以修改了，类似过河拆桥
      * 3.头插法：将当前节点的next域指向新链表的第一个节点，新链表的头指针指向当前节点
      * @param head
-     * @return com.rambo.algorithm.Node
+     * @return com.rambo.algorithm.linkednode.Node
      */
     public static Node reverseNode(Node head) {
         // 如果链表为空或只有一个节点，无需反转，直接返回原链表表头
@@ -62,7 +62,7 @@ public class ReverseNode {
     /**
      * @description 用栈实现单链表反转
      * @param head
-     * @return com.rambo.algorithm.Node
+     * @return com.rambo.algorithm.linkednode.Node
      */
     public static Node reverseByStack(Node head) {
         // 1.如果链表为空或只有一个节点，无需反转，直接返回原链表表头
@@ -92,7 +92,7 @@ public class ReverseNode {
      * 递归的精髓在于你就默认reverseNodeRec已经成功帮你解决了子问题了！但别去想如何解决的
      * 现在只要处理当前node和子问题之间的关系。最后就能圆满解决整个问题。
      * @param head
-     * @return com.rambo.algorithm.ReverseNode.Node
+     * @return com.rambo.algorithm.linkednode.ReverseNode.Node
      */
     public static Node reverseNodeRec(Node head) {
         if (head == null || head.next == null) {
@@ -102,40 +102,5 @@ public class ReverseNode {
         head.next.next = head;
         head.next = null;
         return newHead;
-    }
-}
-
-class Node {
-    int val;
-    Node next;
-
-    public Node(int val) {
-        this.val = val;
-    }
-
-    public int getVal() {
-        return val;
-    }
-
-    public void setVal(int val) {
-        this.val = val;
-    }
-
-    public Node getNext() {
-        return next;
-    }
-
-    public void setNext(Node next) {
-        this.next = next;
-    }
-
-    public void printNode() {
-        Node node = this;
-        StringBuilder sb = new StringBuilder().append(node.val);
-        while (node.getNext() != null) {
-            node = node.getNext();
-            sb.append("->").append(node.val);
-        }
-        System.out.println(sb.toString());
     }
 }
