@@ -9,14 +9,12 @@ public class MiddleNode {
     public static void main(String[] args){
         Node node1 = new Node(1);
         Node node2 = new Node(2);
-        Node node3 = new Node(3);
-        Node node4 = new Node(4);
-        Node node5 = new Node(5);
+        Node node3 = new Node(2);
+        Node node4 = new Node(1);
 
         node1.setNext(node2);
         node2.setNext(node3);
         node3.setNext(node4);
-        node4.setNext(node5);
 
         System.out.print("链表:");
         node1.printNode();
@@ -37,12 +35,9 @@ public class MiddleNode {
         Node first = head;
         Node last = head;
 
-        while (first.next != null) {
-            first = first.next;
+        while (first.next != null && first.next.next != null) {
+            first = first.next.next;
             last = last.next;
-            if (first != null) {
-                first = first.next;
-            }
         }
         return last;
     }

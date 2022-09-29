@@ -45,8 +45,9 @@ public class ReverseNode {
      */
     public static Node reverseNode(Node head) {
         // 如果链表为空或只有一个节点，无需反转，直接返回原链表表头
-        if (head == null || head.next == null)
+        if (head == null || head.next == null){
             return head;
+        }
 
         Node newHead = null;// 新链表的头指针
         Node prePointer = head;// 前指针
