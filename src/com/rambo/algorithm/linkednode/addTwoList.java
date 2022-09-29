@@ -73,6 +73,12 @@ public class addTwoList {
 //    }
 //
 
+    /**
+     * 两数相加：反向存放、反向输出。
+     * @param l1
+     * @param l2
+     * @return
+     */
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0); // 辅助节点
         ListNode pre = dummy;
@@ -91,6 +97,51 @@ public class addTwoList {
         if (carry > 0) pre.next = new ListNode(carry);
 
         return dummy.next;
+    }
+
+    /**
+     * 两数相加II：正向存放，正向输出。
+     * @param l1
+     * @param l2
+     * @return
+     */
+    public static ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+        ListNode dummy = new ListNode(0); // 辅助节点
+        ListNode pre = dummy;
+        int carry = 0;
+        l1 = reverseNode(l1);
+        l2 = reverseNode(l2);
+        while (l1 != null || l2 != null) {
+            int n1 = l1 != null ? l1.val : 0;
+            int n2 = l2 != null ? l2.val : 0;
+            int sum = n1 + n2 + carry;
+            pre.next = new ListNode(sum % 10);
+            carry = sum / 10;
+
+            pre = pre.next;
+            if (l1 != null) l1 = l1.next;
+            if (l2 != null) l2 = l2.next;
+        }
+        if (carry > 0) pre.next = new ListNode(carry);
+
+        return reverseNode(dummy.next);
+    }
+
+    public static ListNode reverseNode(ListNode head) {
+        // 如果链表为空或只有一个节点，无需反转，直接返回原链表表头
+        if (head == null || head.next == null){
+            return head;
+        }
+
+        ListNode newHead = null;// 新链表的头指针
+        ListNode prePointer = head;// 前指针
+        while (prePointer != null) {
+            ListNode curPointer = prePointer;      // 后指针
+            prePointer = prePointer.next;        // 前指针“过河”：移动到下一个节点
+            curPointer.next = newHead;   // 后指针“拆桥”+ 头插法（将当前处理节点的next域指向新链表的第一个节点）
+            newHead = curPointer;        // 头插法（新链表的头指针前移，即指向刚插入的节点）
+        }
+        return newHead;
     }
 
 
