@@ -2,6 +2,7 @@ package com.rambo.algorithm.tree;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -46,10 +47,15 @@ public class BinaryTree {
 
         System.out.print("递归实现中序遍历：");
         inorderTraversalRec(root);
+        List<Integer> inorderTraversalRecStack = inorderTraversalRecStack(root);
+        System.out.println(inorderTraversalRecStack);
         System.out.println();
 
         System.out.print("递归实现后续遍历：");
         postorderTraversalRec(root);
+        List<Integer> postOrderTraversalRecStack = postOrderTraversalRecStack(root);
+        System.out.println();
+        System.out.println(postOrderTraversalRecStack);
         System.out.println();
 
         int nodeNum = getNodeNumRec(root);
@@ -167,6 +173,25 @@ public class BinaryTree {
     }
 
     /**
+     * 中序遍历迭代法:关键点：节点的访问顺序与处理顺序不一致，树的访问必然是根节点开始的，中序遍历的却是需要从最左边的叶子节点开始。
+     * 因此，一开始入栈的节点是一路向左，最左边的树枝全部入栈，之后开始按照中序遍历要求处理。
+     */
+    public static List<Integer> inorderTraversalRecStack(TreeNode root) {
+        List<Integer> res = new ArrayList<Integer>();
+        Deque<TreeNode> stk = new LinkedList<TreeNode>();
+        while (root != null || !stk.isEmpty()) {
+            while (root != null) {
+                stk.push(root);
+                root = root.left;
+            }
+            root = stk.pop();
+            res.add(root.val);
+            root = root.right;
+        }
+        return res;
+    }
+
+    /**
      * 后序遍历递归解法
      * （1）如果二叉树为空，空操作
      * （2）如果二叉树不为空，后序遍历左子树，后序遍历右子树，访问根节点
@@ -177,6 +202,32 @@ public class BinaryTree {
         postorderTraversalRec(root.left);
         postorderTraversalRec(root.right);
         System.out.print(root.val + " ");
+    }
+
+    /**
+     * 后序遍历:前序遍历的解法稍微改变下次序。根左右，把入栈顺序调换之后可以改为根右左，结果数组反转一下就是左右根。
+     */
+    public static List<Integer> postOrderTraversalRecStack(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
+
+        Stack<TreeNode> stack = new Stack<>();
+        List<Integer> res = new ArrayList<>();
+        stack.add(root);
+
+        while (!stack.isEmpty()) {
+            TreeNode treeNode = stack.pop();
+            res.add(treeNode.val);
+            if (treeNode.left != null) {
+                stack.push(treeNode.left);
+            }
+            if (treeNode.right != null) {
+                stack.push(treeNode.right);
+            }
+        }
+        Collections.reverse(res);
+        return res;
     }
 
     /**
