@@ -1,4 +1,4 @@
-package com.rambo.algorithm;
+package com.rambo.algorithm.search;
 
 /**
  * @description: test
@@ -6,7 +6,7 @@ package com.rambo.algorithm;
  * 给定按照非递减顺序排列的整数数组 nums 和一个目标值 target。请你找出给定目标值在数组中最右侧的位置
  * @created: 2023/03/02 19:58
  */
-public class Test {
+public class BinarySearch3 {
 
     public static void main(String[] args) {
         int[] array = {1,2,2,2,3,4};

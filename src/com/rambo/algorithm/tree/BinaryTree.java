@@ -100,24 +100,34 @@ public class BinaryTree {
     /**
      * @param root
      * @return void
-     * @description 用队列实现二叉树的广度优先遍历
+     * @description 用队列实现二叉树的广度优先遍历，层序输出
      */
-    public static void levelTraversal(TreeNode root) {
-        if (root == null) return;
-
+    public static List<List<Integer>> levelTraversal(TreeNode root) {
+        List<List<Integer>> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
         LinkedList<TreeNode> queue = new LinkedList<>();
         queue.add(root);
 
         while (!queue.isEmpty()) {
-            TreeNode treeNode = queue.remove();
-            System.out.print(treeNode.val + " ");
-            if (treeNode.left != null) {
-                queue.add(treeNode.left);
+            List<Integer> levelTemp = new ArrayList<>();
+            int size = queue.size();
+            for (int i = 0; i < size; i++) {
+                TreeNode treeNode = queue.remove();
+                levelTemp.add(treeNode.val);
+                if (treeNode.left != null) {
+                    queue.add(treeNode.left);
+                }
+                if (treeNode.right != null) {
+                    queue.add(treeNode.right);
+                }
             }
-            if (treeNode.right != null) {
-                queue.add(treeNode.right);
-            }
+            result.add(levelTemp);
         }
+        //自底向上的层序遍历，只需要将结果集反转即可
+//        Collections.reverse(result);
+        return result;
     }
 
     /**
@@ -177,8 +187,8 @@ public class BinaryTree {
      * 因此，一开始入栈的节点是一路向左，最左边的树枝全部入栈，之后开始按照中序遍历要求处理。
      */
     public static List<Integer> inorderTraversalRecStack(TreeNode root) {
-        List<Integer> res = new ArrayList<Integer>();
-        Deque<TreeNode> stk = new LinkedList<TreeNode>();
+        List<Integer> res = new ArrayList<>();
+        Deque<TreeNode> stk = new LinkedList<>();
         while (root != null || !stk.isEmpty()) {
             while (root != null) {
                 stk.push(root);
@@ -252,6 +262,24 @@ public class BinaryTree {
         int depthLeft = getNodeDepthRec(root.left);
         int depthRight = getNodeDepthRec(root.right);
         return (depthLeft > depthRight ? depthLeft : depthRight) + 1;
+    }
+
+    public int minDepth(TreeNode root) {
+        if (root == null)
+            return 0;
+        int depthLeft = minDepth(root.left);
+        int depthRight = minDepth(root.right);
+        return min(depthLeft, depthRight) + 1;
+    }
+
+    public int min(int depthLeft,int depthRight) {
+        if (depthLeft == 0 && depthRight != 0) {
+            return depthRight;
+        }
+        if (depthLeft != 0 && depthRight == 0) {
+            return depthLeft;
+        }
+        return depthLeft <= depthRight ? depthLeft : depthRight;
     }
 
     /**

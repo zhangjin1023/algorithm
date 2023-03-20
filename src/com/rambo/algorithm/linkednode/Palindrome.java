@@ -22,9 +22,6 @@ import java.util.List;
  *  
  * 进阶：你能否用 O(n) 时间复杂度和 O(1) 空间复杂度解决此题？
  * <p>
- * 来源：力扣（LeetCode）
- * 链接：https://leetcode.cn/problems/palindrome-linked-list
- * 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  * @author: zhangjin27
  * @created: 2022/09/27 16:20
  */
