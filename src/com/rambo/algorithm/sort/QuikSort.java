@@ -1,5 +1,7 @@
 package com.rambo.algorithm.sort;
 
+import java.util.Arrays;
+
 /**
  * @description: 快速排序：是一种分区交换排序算法。采用分治策略对两个子序列再分别进行快速排序，是一种递归算法。
  * 时间复杂度：
@@ -15,14 +17,14 @@ public class QuikSort {
         int[] arr = {5, 2, 3, 1};//直接复制数组
 //        int[] arr={8,4,5,7,1,3,6};//直接复制数组
         quick_sort(arr, 0, arr.length - 1);
-        print(arr);
+        System.out.println(Arrays.toString(arr));
     }
 
     private static int get_mid(int[] arr, int left, int right) {
         int pivot = arr[left];//自定义排序中心轴，这里把arr[left]存到pivot中去，此时arr[left]为空。pivot相当于一个中间量
         while (left < right) {//当left与right指针相遇的时候退出循环，双指针遍历结束
             while (arr[right] >= pivot && left < right) {
-                right--;//right指针从右往左遍历，当arr[right]>=pivot，即满足以pivot为中轴，小放左，大放右的条件时，right指针继续往右遍历。当arr[right]<pivotd的时候，把当前值arr[right]赋给空置arr[left]，此时arr[right]成了空值。
+                right--;//right指针从右往左遍历，当arr[right]>=pivot，即满足以pivot为中轴，小放左，大放右的条件时，right指针继续往右遍历。当arr[right]<pivot的时候，把当前值arr[right]赋给空置arr[left]，此时arr[right]成了空值。
             }
             arr[left] = arr[right];
             while (arr[left] <= pivot && left < right) {
@@ -45,10 +47,4 @@ public class QuikSort {
         }
     }
 
-    public static void print(int arr[])//封装函打印函数
-    {
-        for (int k = 0; k < arr.length; k++) {
-            System.out.print(arr[k] + " ");
-        }
-    }
 }
