@@ -92,6 +92,11 @@ public class FrogJump {
      * @description dp解法（自底向上）,时间复杂度0(n),空间复杂度O(n)
      */
     public static int frogJumpDp(int n) {
+        //dp数组的含义：dp[n]表示爬n阶楼梯一共有多少总方法；
+        //递推公式：dp[i] = dp[i-1] + dp[i-2];
+        //初始化：dp[1] = 1,dp[2]=2
+        //遍历方式：从前向后
+        //要求dp[n]，则数组长度数n+1
         int[] dp = new int[n + 1];
         for (int i = 0; i <= n; i++) {
             if (i <= 2) {
